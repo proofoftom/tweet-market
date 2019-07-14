@@ -31,7 +31,7 @@
       </div>
     </div>
     <hr />
-    <p>Your Funds: {{ funds | inETH }}</p>
+    <p>Your Funds: {{ balance | inETH }}</p>
   </div>
 </template>
 
@@ -39,9 +39,8 @@
 export default {
   name: "home",
   computed: {
-    funds() {
-      return 0;
-      // return this.$store.getters.funds;
+    balance() {
+      return this.$store.state.ethers.balance;
     }
   }
 };

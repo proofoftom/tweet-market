@@ -24,19 +24,34 @@
             <a class="nav-link">Tweets</a>
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="portfolio">
-            <a class="nav-link">Portfolio</a>
-          </router-link>
+        <li>
+          <vth-status deferred>
+            <template slot-scope="{getWeb3}">
+              <router-link v-if="user" to="portfolio">
+                <a class="nav-link">Portfolio</a>
+              </router-link>
+              <a v-else class="nav-link" href="/" @click="getWeb3">Portfolio</a>
+            </template>
+          </vth-status>
         </li>
       </ul>
-      <div class="funds mr-2">{{ funds | inETH }}</div>
+      <div class="balance">{{ balance | inETH }}</div>
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-primary mx-3"
         data-toggle="modal"
         data-target="#submitTweetModal"
       >Submit a Tweet</button>
+      <vth-status deferred>
+        <div slot-scope="{getWeb3}">
+          <router-link v-if="user" to="portfolio">
+            <vth-blockie :string="user" />
+          </router-link>
+          <a v-else href="#" @click="getWeb3">
+            <vth-blockie string="0x0" />
+          </a>
+        </div>
+      </vth-status>
     </div>
   </nav>
 </template>
@@ -44,10 +59,18 @@
 <script>
 export default {
   computed: {
-    funds() {
-      return 0;
-      // return this.$store.getters.funds;
+    user() {
+      return this.$store.state.ethers.user;
+    },
+    balance() {
+      return this.$store.state.ethers.balance;
     }
   }
 };
 </script>
+
+<style lang="scss">
+.vth-blockie {
+  border-radius: 5px;
+}
+</style>

@@ -2,6 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store/store";
+import Vuethereum from "vuethereum";
+
+Vue.use(Vuethereum);
 
 Vue.config.productionTip = false;
 
