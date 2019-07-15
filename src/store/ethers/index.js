@@ -7,12 +7,10 @@ const state = () => ({
   initialized: false,
   connected: false,
   error: null,
-  //user is ens or address
-  user: "",
+  user: "", // User is ens or address
   balance: 0,
-  address: "",
-  network: "",
-  ens: null
+  address: "0x0",
+  network: ""
 });
 
 export default {

@@ -20,8 +20,5 @@ export default {
   },
   network: function(state, value) {
     state.network = value;
-  },
-  ens: function(state, value) {
-    state.ens = value;
   }
 };

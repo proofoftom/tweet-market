@@ -35,18 +35,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-          <vth-status deferred>
-            <template slot-scope="{getWeb3}">
-              <button
-                v-if="user"
-                type="button"
-                class="btn btn-primary"
-                data-dismiss="modal"
-              >Submit Tweet</button>
-              <button v-else type="button" class="btn btn-primary" @click="getWeb3">Submit Tweet</button>
-            </template>
-          </vth-status>
+          <button
+            v-if="user"
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+          >Submit Tweet</button>
+          <button v-else type="button" class="btn btn-primary" @click="openPortis">Submit Tweet</button>
         </div>
       </div>
     </div>
@@ -54,10 +49,17 @@
 </template>
 
 <script>
+import portis from "@/plugins/portis";
+
 export default {
   computed: {
     user() {
       return this.$store.state.ethers.user;
+    }
+  },
+  methods: {
+    openPortis() {
+      portis.showPortis();
     }
   }
 };
